@@ -1,5 +1,7 @@
 USE CollegeDB;
 
+DROP TABLE IF EXISTS Marksheet;
+
 CREATE TABLE Marksheet (
     rollNo INT,
     Name VARCHAR(20),
