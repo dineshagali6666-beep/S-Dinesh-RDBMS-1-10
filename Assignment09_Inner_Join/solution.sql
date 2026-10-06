@@ -1,20 +1,33 @@
 USE CollegeDB;
 
-CREATE TABLE Employee (
-    EmployeeID INT(10),
-    EmployeeName VARCHAR(20),
-    Department VARCHAR(20),
-    Salary INT(20)
+DROP TABLE IF EXISTS Student;
+DROP TABLE IF EXISTS Department;
+
+CREATE TABLE Department (
+    DepartmentID INT PRIMARY KEY,
+    DepartmentName VARCHAR(50)
 );
 
-INSERT INTO Employee VALUES
-(101, 'Ravi', 'HR', 25000),
-(102, 'Meena', 'IT', 40000),
-(103, 'Kumar', 'Finance', 35000),
-(104, 'Suresh', 'IT', 45000),
-(105, 'Latha', 'HR', 30000);
+INSERT INTO Department VALUES
+(101, 'Computer Science'),
+(102, 'Mathematics'),
+(103, 'Science');
 
-SELECT COUNT(Salary) AS total_employees FROM Employee;
-SELECT MIN(Salary) AS minimum_salary FROM Employee;
-SELECT MAX(Salary) AS maximum_salary FROM Employee;
-SELECT AVG(Salary) AS average_salary FROM Employee;
+CREATE TABLE Student (
+    StudentID INT PRIMARY KEY,
+    StudentName VARCHAR(20),
+    DepartmentID INT
+);
+
+INSERT INTO Student VALUES
+(1001, 'Arun', 101),
+(1002, 'Divya', 102),
+(1003, 'Karthik', 101),
+(1004, 'Nisha', 103);
+
+SELECT Student.StudentID,
+       Student.StudentName,
+       Department.DepartmentName
+FROM Student
+INNER JOIN Department
+ON Student.DepartmentID = Department.DepartmentID;
